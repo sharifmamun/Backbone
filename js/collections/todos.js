@@ -5,11 +5,18 @@ var app = app || {};
 var todoList = Backbone.Collection.extend({
 
 	// Reference to this collection's model
-	model: app.Todo;
+	model: app.Todo,
 
 	// the following line depends on localStorage.js
-	localStorage: new Backbone.localStorage('todos-backbone'),
+	localStorage: new Backbone.LocalStorage('todos-backbone'),
 
+	defaults: function() {
+	    return {
+	      title: "empty todo...",
+	      order: Todos.nextOrder(),
+	      done: false
+	    };
+	},
 	// Filter out the list of all todo items that are finished.
 	completed: function() {
 		return this.filter(function( todo ) {
@@ -34,7 +41,7 @@ var todoList = Backbone.Collection.extend({
 	},
 
 	//Todos are sorted by their original order.
-	comparator: function() {
+	comparator: function( todo ) {
 		return todo.get('order');
 	}
 });
