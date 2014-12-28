@@ -105,8 +105,12 @@ app.AppView = Backbone.View.extend({
 
 	// Clear all completed todo items and destroying their models.
 	clearCompleted: function() {
-		var completed = this.allCheckbox.checked;
+		_.invoke(app.Todos.completed(), 'destroy');
+		return false;
+	},
 
+	toggleAllComplete: function(){
+		var completed = this.allCheckbox.checked;		
 		app.Todos.each( function( todo ) {
 			todo.save({
 				'completed': completed

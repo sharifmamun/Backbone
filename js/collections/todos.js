@@ -14,7 +14,7 @@ var todoList = Backbone.Collection.extend({
 	    return {
 	      title: "empty todo...",
 	      order: Todos.nextOrder(),
-	      done: false
+	      completed: false
 	    };
 	},
 	// Filter out the list of all todo items that are finished.

@@ -10,6 +10,13 @@ app.Todo = Backbone.Model.extend({
 		completed: false
 	},
 
+	initialize: function() {
+		console.log("This model has already been initialized");
+		this.on('change', function() {
+			console.log("Changed something");
+		});
+	},
+
 	//Toggle the completed state of this Todo item
 	toggle: function() {
 		this.save({
